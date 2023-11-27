@@ -15,11 +15,20 @@ public class Main {
         double annualRate = readNumber("Annual Rate : ",1, 30);
         int year = (int)readNumber("Years : ", 1, 30);
 
-        double mortgage = calculateMortgage(principal, annualRate, year);
+        printMortgage(principal, annualRate, year);
+        printPaymentSchedule(year, principal, annualRate);
+    }
 
+    private static void printMortgage(double principal, double annualRate, int year) {
+        double mortgage = calculateMortgage(principal, annualRate, year);
+        System.out.println();
+        System.out.println("MORTGAGE");
+        System.out.println("-------------------");
         String monthlyPayment = NumberFormat.getCurrencyInstance(new Locale("en","LK")).format(mortgage);
         System.out.println("Monthly Payment : " + monthlyPayment);
+    }
 
+    private static void printPaymentSchedule(int year, double principal, double annualRate) {
         System.out.println();
         System.out.println("PAYMENT SCHEDULE");
         System.out.println("-------------------");
