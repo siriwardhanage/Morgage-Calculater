@@ -8,45 +8,33 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("****** Mortgage Calculator ***** \n");
 
-        Scanner scanner = new Scanner(System.in);
-
-
-        double principal = 0;
-        double annualRate = 0;
-        int year = 0;
-
         //for principal
-        while (true) {
-            System.out.print("Principal : ");
-            principal = scanner.nextDouble();
-            if (principal >= 10_000 && principal <= 1_000_000)
-                break;
-            System.out.println("Enter a value between LKR 10000 and LKR 1000000 ");
-        }
+        double principal = readNumber("principal : ",10_000, 1_000_000);
 
         //for Annual Interest Rate
-        while (true){
-            System.out.print("Annual Interest Rate : ");
-            annualRate = scanner.nextDouble();
-            if (annualRate >= 1 && annualRate <= 30)
-                break;
-            System.out.println("Enter a value between 1 and 30");
-        }
+        double annualRate = readNumber("Annual Rate : ",1, 30);
 
         //for time period
-        while (true){
-            System.out.print("Period (Years) : ");
-            year = scanner.nextInt();
-            if (year >= 1 && year <= 30)
-                break;
-            System.out.println("Enter a value between 1 and 30");
-        }
+        int year = (int)readNumber("Years : ", 1, 30);
 
         double mortgage = calculateMortgage(principal, annualRate, year);
 
        String monthlyPayment = NumberFormat.getCurrencyInstance(new Locale("en","LK")).format(mortgage);
        System.out.println("Monthly Payment : " + monthlyPayment);
 
+    }
+
+    public static double readNumber(String prompt, double min, double max){
+        Scanner scanner = new Scanner(System.in);
+        double value;
+        while (true) {
+            System.out.print(prompt);
+            value = scanner.nextDouble();
+            if (value >= min && value <= max)
+                break;
+            System.out.println("Enter a value between LKR " + min +"and LKR " + max);
+        }
+        return value;
     }
 
     public static double calculateMortgage(
