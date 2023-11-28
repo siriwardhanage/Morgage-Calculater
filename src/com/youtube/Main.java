@@ -2,7 +2,6 @@ package com.youtube;
 
 import java.text.NumberFormat;
 import java.util.Locale;
-import java.util.Scanner;
 
 public class Main {
     final static int MONTHS_IN_YEARS = 12;
@@ -11,9 +10,9 @@ public class Main {
 
         System.out.println("****** Mortgage Calculator ***** \n");
 
-        double principal = readNumber("principal : ",10_000, 1_000_000);
-        double annualRate = readNumber("Annual Rate : ",1, 30);
-        int year = (int)readNumber("Years : ", 1, 30);
+        double principal = Console.readNumber("principal : ",10_000, 1_000_000);
+        double annualRate = Console.readNumber("Annual Rate : ",1, 30);
+        int year = (int) Console.readNumber("Years : ", 1, 30);
 
         printMortgage(principal, annualRate, year);
         printPaymentSchedule(year, principal, annualRate);
@@ -36,19 +35,6 @@ public class Main {
             double balance = calculateBalance(principal, annualRate, year, month);
             System.out.println(NumberFormat.getCurrencyInstance(new Locale("en", "LK")).format(balance));
         }
-    }
-
-    public static double readNumber(String prompt, double min, double max){
-        Scanner scanner = new Scanner(System.in);
-        double value;
-        while (true) {
-            System.out.print(prompt);
-            value = scanner.nextDouble();
-            if (value >= min && value <= max)
-                break;
-            System.out.println("Enter a value between LKR " + min +"and LKR " + max);
-        }
-        return value;
     }
 
     public static double calculateBalance (
