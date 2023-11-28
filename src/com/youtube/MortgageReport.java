@@ -4,8 +4,12 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class MortgageReport {
+
+    private static MortgageCalculate calculate;
+
     public static void printMortgage(double principal, double annualRate, int year) {
-        double mortgage = Main.calculateMortgage(principal, annualRate, year);
+        calculate = new MortgageCalculate(principal, annualRate, year);
+        double mortgage = calculate.calculateMortgage();
         System.out.println();
         System.out.println("MORTGAGE");
         System.out.println("-------------------");
@@ -18,7 +22,7 @@ public class MortgageReport {
         System.out.println("PAYMENT SCHEDULE");
         System.out.println("-------------------");
         for (int month = 1; month <= year * Main.MONTHS_IN_YEARS; month++) {
-            double balance = Main.calculateBalance(principal, annualRate, year, month);
+            double balance = calculate.calculateBalance(month);
             System.out.println(NumberFormat.getCurrencyInstance(new Locale("en", "LK")).format(balance));
         }
     }

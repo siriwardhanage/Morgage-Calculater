@@ -15,36 +15,4 @@ public class Main {
         MortgageReport.printPaymentSchedule(year, principal, annualRate);
     }
 
-    public static double calculateBalance (
-            double principal,
-            double annualRate,
-            int year,
-            int numberOfPaymentsMade
-    ){
-        double monthlyInterest = annualRate / MONTHS_IN_YEARS / PERCENT;
-        double numberOfPayment = year * MONTHS_IN_YEARS;
-
-        double balance = principal
-                * (Math.pow(1+ monthlyInterest, numberOfPayment) - Math.pow(1 + monthlyInterest, numberOfPaymentsMade))
-                / (Math.pow(1+ monthlyInterest, numberOfPayment) - 1);
-
-        return balance;
-    }
-    public static double calculateMortgage(
-            double principal,
-            double annualRate,
-            int year){
-
-        final int MONTHS_IN_YEARS = 12;
-        final int PERCENT = 100;
-
-        double monthlyInterest = annualRate / MONTHS_IN_YEARS / PERCENT;
-        double numberOfPayment = year * MONTHS_IN_YEARS;
-
-        double mortgage = principal
-                * monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayment)
-                / (Math.pow(1 + monthlyInterest, numberOfPayment)-1);
-
-        return mortgage;
-    }
 }
