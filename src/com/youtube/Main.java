@@ -1,8 +1,5 @@
 package com.youtube;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
 public class Main {
     final static int MONTHS_IN_YEARS = 12;
     final static int PERCENT = 100;
@@ -14,27 +11,8 @@ public class Main {
         double annualRate = Console.readNumber("Annual Rate : ",1, 30);
         int year = (int) Console.readNumber("Years : ", 1, 30);
 
-        printMortgage(principal, annualRate, year);
-        printPaymentSchedule(year, principal, annualRate);
-    }
-
-    private static void printMortgage(double principal, double annualRate, int year) {
-        double mortgage = calculateMortgage(principal, annualRate, year);
-        System.out.println();
-        System.out.println("MORTGAGE");
-        System.out.println("-------------------");
-        String monthlyPayment = NumberFormat.getCurrencyInstance(new Locale("en","LK")).format(mortgage);
-        System.out.println("Monthly Payment : " + monthlyPayment);
-    }
-
-    private static void printPaymentSchedule(int year, double principal, double annualRate) {
-        System.out.println();
-        System.out.println("PAYMENT SCHEDULE");
-        System.out.println("-------------------");
-        for (int month = 1; month <= year * MONTHS_IN_YEARS; month++){
-            double balance = calculateBalance(principal, annualRate, year, month);
-            System.out.println(NumberFormat.getCurrencyInstance(new Locale("en", "LK")).format(balance));
-        }
+        MortgageReport.printMortgage(principal, annualRate, year);
+        MortgageReport.printPaymentSchedule(year, principal, annualRate);
     }
 
     public static double calculateBalance (
