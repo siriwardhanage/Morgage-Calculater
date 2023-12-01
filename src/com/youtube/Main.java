@@ -1,8 +1,6 @@
 package com.youtube;
 
 public class Main {
-    final static int MONTHS_IN_YEARS = 12;
-    final static int PERCENT = 100;
     public static void main(String[] args) {
 
         System.out.println("****** Mortgage Calculator ***** \n");

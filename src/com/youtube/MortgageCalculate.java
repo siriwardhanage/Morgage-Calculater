@@ -1,6 +1,8 @@
 package com.youtube;
 
 public class MortgageCalculate {
+    public final static int MONTHS_IN_YEARS = 12;
+    public final static int PERCENT = 100;
     private double principal;
     private double annualRate;
     private int year;
@@ -11,8 +13,8 @@ public class MortgageCalculate {
     }
 
     public double calculateBalance(int numberOfPaymentsMade) {
-        double monthlyInterest = annualRate / Main.MONTHS_IN_YEARS / Main.PERCENT;
-        double numberOfPayment = year * Main.MONTHS_IN_YEARS;
+        double monthlyInterest = annualRate / MONTHS_IN_YEARS / PERCENT;
+        double numberOfPayment = year * MONTHS_IN_YEARS;
 
         double balance = principal
                 * (Math.pow(1 + monthlyInterest, numberOfPayment) - Math.pow(1 + monthlyInterest, numberOfPaymentsMade))
