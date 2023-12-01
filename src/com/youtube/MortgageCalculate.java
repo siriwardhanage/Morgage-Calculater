@@ -48,9 +48,9 @@ public class MortgageCalculate {
 
     public double[] getRemainingBalance(){
         double[] balances = new double[getNumberOfPayment()];
-        for (int month = 1; month <= getNumberOfPayment(); month++) {
+        for (int month = 1; month <= balances.length; month++)
             balances[month - 1] = calculateBalance(month);
-        }
+
         return balances;
     }
 

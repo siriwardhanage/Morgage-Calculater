@@ -5,10 +5,12 @@ import java.util.Locale;
 
 public class MortgageReport {
 
+    private final NumberFormat currency;
     private MortgageCalculate calculate;
 
     public MortgageReport(MortgageCalculate calculate) {
         this.calculate = calculate;
+        currency = NumberFormat.getCurrencyInstance(new Locale("en", "LK"));
     }
 
     public void printPaymentSchedule() {
@@ -17,7 +19,7 @@ public class MortgageReport {
         System.out.println("-------------------");
 
         for (double balance : calculate.getRemainingBalance())
-            System.out.println(NumberFormat.getCurrencyInstance(new Locale("en", "LK")).format(balance));
+            System.out.println(currency.format(balance));
 
     }
 
@@ -26,7 +28,7 @@ public class MortgageReport {
         System.out.println();
         System.out.println("MORTGAGE");
         System.out.println("-------------------");
-        String monthlyPayment = NumberFormat.getCurrencyInstance(new Locale("en", "LK")).format(mortgage);
+        String monthlyPayment = currency.format(mortgage);
         System.out.println("Monthly Payment : " + monthlyPayment);
     }
 }
