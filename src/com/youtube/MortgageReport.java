@@ -15,10 +15,10 @@ public class MortgageReport {
         System.out.println();
         System.out.println("PAYMENT SCHEDULE");
         System.out.println("-------------------");
-        for (int month = 1; month <= calculate.getYear() * MortgageCalculate.MONTHS_IN_YEARS; month++) {
-            double balance = calculate.calculateBalance(month);
+
+        for (double balance : calculate.getRemainingBalance())
             System.out.println(NumberFormat.getCurrencyInstance(new Locale("en", "LK")).format(balance));
-        }
+
     }
 
     public void printMortgage() {

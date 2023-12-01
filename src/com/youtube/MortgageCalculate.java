@@ -1,8 +1,8 @@
 package com.youtube;
 
 public class MortgageCalculate {
-    public final static int MONTHS_IN_YEARS = 12;
-    public final static int PERCENT = 100;
+    private final static int MONTHS_IN_YEARS = 12;
+    private final static int PERCENT = 100;
     private double principal;
     private double annualRate;
     private int year;
@@ -46,7 +46,12 @@ public class MortgageCalculate {
         return annualRate / MONTHS_IN_YEARS / PERCENT;
     }
 
-    public int getYear() {
-        return year;
+    public double[] getRemainingBalance(){
+        double[] balances = new double[getNumberOfPayment()];
+        for (int month = 1; month <= getNumberOfPayment(); month++) {
+            balances[month - 1] = calculateBalance(month);
+        }
+        return balances;
     }
+
 }
