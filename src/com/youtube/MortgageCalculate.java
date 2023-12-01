@@ -35,4 +35,8 @@ public class MortgageCalculate {
 
         return mortgage;
     }
+
+    public int getYear() {
+        return year;
+    }
 }

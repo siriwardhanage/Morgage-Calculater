@@ -11,8 +11,10 @@ public class Main {
         double annualRate = Console.readNumber("Annual Rate : ",1, 30);
         int year = (int) Console.readNumber("Years : ", 1, 30);
 
-        MortgageReport.printMortgage(principal, annualRate, year);
-        MortgageReport.printPaymentSchedule(year, principal, annualRate);
+        MortgageCalculate calculate = new MortgageCalculate(principal, annualRate, year);
+        MortgageReport report = new MortgageReport(calculate);
+        report.printMortgage();
+        report.printPaymentSchedule();
     }
 
 }
