@@ -13,8 +13,8 @@ public class MortgageCalculate {
     }
 
     public double calculateBalance(int numberOfPaymentsMade) {
-        double monthlyInterest = annualRate / MONTHS_IN_YEARS / PERCENT;
-        double numberOfPayment = year * MONTHS_IN_YEARS;
+        double monthlyInterest = getMonthlyInterest();
+        double numberOfPayment = getNumberOfPayment(MONTHS_IN_YEARS);
 
         double balance = principal
                 * (Math.pow(1 + monthlyInterest, numberOfPayment) - Math.pow(1 + monthlyInterest, numberOfPaymentsMade))
@@ -23,19 +23,27 @@ public class MortgageCalculate {
         return balance;
     }
 
+
     public double calculateMortgage() {
 
         final int MONTHS_IN_YEARS = 12;
         final int PERCENT = 100;
 
-        double monthlyInterest = annualRate / MONTHS_IN_YEARS / PERCENT;
-        double numberOfPayment = year * MONTHS_IN_YEARS;
+        double monthlyInterest = getMonthlyInterest();
+        double numberOfPayment = getNumberOfPayment(MONTHS_IN_YEARS);
 
         double mortgage = principal
                 * monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayment)
                 / (Math.pow(1 + monthlyInterest, numberOfPayment) - 1);
 
         return mortgage;
+    }
+
+    private int getNumberOfPayment(int MONTHS_IN_YEARS) {
+        return year * MONTHS_IN_YEARS;
+    }
+    private double getMonthlyInterest() {
+        return annualRate / MONTHS_IN_YEARS / PERCENT;
     }
 
     public int getYear() {
